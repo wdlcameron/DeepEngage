@@ -48,13 +48,10 @@
 }
 
 html {
-
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  height: 100%;
-  min-height: 100%;
 }
 
 
@@ -72,9 +69,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #1abc9c;
-  height: 100%;
-  min-height: 100%;
+  background-color: #fff;
 }
 
 [tabindex="-1"]:focus {
@@ -605,7 +600,6 @@ pre code {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-  text-align: center;
 }
 
 .no-gutters {

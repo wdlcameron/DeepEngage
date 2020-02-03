@@ -244,26 +244,27 @@ clareton_filter = partial(apply_preset_filter,
 
 
 
+DEMO_PATH = Path('demo_images')
 
-demo_groups = {'Demo_1':[r"C:\Users\William\OneDrive\Code\Output\_C1yuZv7hC.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_Bz9k-jx2k.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_A93IzwCPx.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_BEZenHvU9.jpg"              
+demo_groups = {'Demo_1':[DEMO_PATH/"_C1yuZv7hC.jpg",
+						DEMO_PATH/"_Bz9k-jx2k.jpg",
+						DEMO_PATH/"_A93IzwCPx.jpg",
+						DEMO_PATH/"_BEZenHvU9.jpg"              
 						],
-				'Demo_2':[r"C:\Users\William\OneDrive\Code\Output\_9r0DbP7oj.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_3BbeqQCIA.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_cS3WsqtAp.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_ggkdaDxz6.jpg"],
+				'Demo_2':[DEMO_PATH/"_9r0DbP7oj.jpg",
+						DEMO_PATH/"_3BbeqQCIA.jpg",
+						DEMO_PATH/"_cS3WsqtAp.jpg",
+						DEMO_PATH/"_ggkdaDxz6.jpg"],
 				
-				'Demo_3':[r"C:\Users\William\OneDrive\Code\Output\_9r0DbP7oj.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_3BbeqQCIA.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_cS3WsqtAp.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_ggkdaDxz6.jpg"],
+				'Demo_3':[DEMO_PATH/"_9r0DbP7oj.jpg",
+						DEMO_PATH/"_3BbeqQCIA.jpg",
+						DEMO_PATH/"_cS3WsqtAp.jpg",
+						DEMO_PATH/"_ggkdaDxz6.jpg"],
 
-				'Demo_4':[r"C:\Users\William\OneDrive\Code\Output\_9r0DbP7oj.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_3BbeqQCIA.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_cS3WsqtAp.jpg",
-						r"C:\Users\William\OneDrive\Code\Output\_ggkdaDxz6.jpg"]
+				'Demo_4':[DEMO_PATH/"_9r0DbP7oj.jpg",
+						DEMO_PATH/"_3BbeqQCIA.jpg",
+						DEMO_PATH/"_cS3WsqtAp.jpg",
+						DEMO_PATH/"_ggkdaDxz6.jpg"]
 				}
 
 
@@ -295,7 +296,7 @@ cache = {'Processed': False,
 
 
 
-cache['learn'] = load_learner(r"C:\Users\William\OneDrive\Code\Output","Second Attempt.pkl")
+cache['learn'] = load_learner("models","Second Attempt.pkl")
 
 
 
@@ -385,7 +386,7 @@ def preset_output():
 def optimize_post():
 	
 	def get_img(): 
-		img = open_image(r"C:\Users\William\OneDrive\Code\Output\_C1yuZv7hC.jpg")
+		img = open_image(DEMO_PATH/"_C1yuZv7hC.jpg")
 		img = img.apply_tfms([crop_pad()], size=400, resize_method=ResizeMethod.CROP, padding_mode='zeros')
 		return img
 
@@ -435,5 +436,5 @@ def optimize_post():
 
 
 if __name__ == "__main__":
-	app.run(debug=True) #will run locally http://127.0.0.1:5000/
+	app.run(host='0.0.0.0', debug = True) #will run locally http://127.0.0.1:5000/
 
