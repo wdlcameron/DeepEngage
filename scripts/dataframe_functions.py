@@ -24,6 +24,41 @@ def get_post_id(url): return url.split(r'/')[-2]
 def unique_features(df, feature):
     return df[feature].unique()
 
+
+def grouped_factor_rolling_window(df, new_col = 'engagement_factor_moving_avg', 
+                                  grouped_var = 'username', applied_variable = 'likes', applied_function = 'mean', 
+                                  normalize = True, window = 20):
+    """
+    Apply a function with a moving average to a specific group within the dataframe.  For instance, applying the
+    mean to the
+    
+    Input Variables:
+    new_col - The name out the output column
+    grouped_var - The grouping you want to average over (usually username)
+    applied_function - The method you want to apply after the groupby() function (ex. mean)
+    applied_variable - The column you want to apply your applied_function onto 
+    window - The number of rows to consider for eacg applied_function call
+    normalize - Divide the original values by the final result
+    """
+    
+    
+    df['rolling'] = np.nan
+    for group in df[grouped_var].unique():
+        sorted_df = df[df[grouped_var] == group].sort_values(by = ['posttime'], inplace = False).reset_index()
+        num_rows = len(sorted_df)
+        if num_rows <window + 2: sorted_df['rolling'] = getattr(sorted_df[applied_variable], applied_function)()
+        else:
+            sorted_df['rolling'] = getattr(sorted_df.rolling(window, min_periods = window-4)[applied_variable],applied_function)()
+            sorted_df['rolling'].loc[0:window-2] = sorted_df.at[window-1,'rolling']
+            sorted_df['rolling'].loc[num_rows - window:] = sorted_df.at[num_rows-window -1,'rolling']
+        for (index, row) in sorted_df.iterrows():
+            df.at[sorted_df.at[index, 'index'], 'rolling'] = sorted_df.at[index, 'rolling']
+            
+    df[new_col] = df[applied_variable]/df['rolling'] if normalize else df['rolling']             
+    return df
+
+
+
 def avg_likes_per_user(df, user_list):
     avg_likes = {user:None for user in user_list if user is not np.nan}
 
@@ -102,7 +137,7 @@ def create_performance_windows(df, factor, window = 0.1):
                 
 
 
-def extract_colour_information(file_str, output_folder = 'Output', ext = '.jpg'):
+def extract_colour_information(file_str, output_folder = 'Images', ext = '.jpg'):
     folder_path = Path(output_folder)
     filename =  file_str + ext
     if (folder_path/filename).exists():
@@ -127,20 +162,21 @@ def extract_colour_information(file_str, output_folder = 'Output', ext = '.jpg')
         return {}
 
 
-def fill_in_colour_information(df, output_folder = 'Output'):
+def fill_in_colour_information(df, output_folder = 'Images'):
     for (index, row) in df.iterrows():
         post_url = df.at[index, 'Links']
         image_name = get_post_id(post_url)
 
         output_folder = Path(output_folder)
         colour_info = extract_colour_information(image_name, output_folder)
+        print(colour_info)
         for param, value in colour_info.items():
             df.at[index, param] = value
     return df
 
 
 
-def post_processing_single(df, metric):
+def post_processing_single(df, root_dir, metric):
     """
     df = engagement_metric_avg_likes(df)
     df = engagement_factor_rolling_mean(df)
@@ -162,15 +198,40 @@ def post_processing_single(df, metric):
 
     
         
-def post_processing(df):
-    df['filename'] = [url.split(r'/')[-2] for url in df['Links']]
+def post_processing(df, root_dir = Path("")):
+    df = df[~pd.isnull(df['Links'])]
+    df['filename'] = [url.split(r'/')[-2] if not pd.isnull(url) else np.nan for url in df['Links'] ]
 
     
     df = engagement_metric_avg_likes(df)
     df = engagement_factor_rolling_mean(df)
     df = parse_datetimes(df)
     df = create_performance_windows(df, 'engagement_factor_moving_avg')
-    df = fill_in_colour_information(df)
+    df = fill_in_colour_information(df, root_dir/'Images')
+
+    df = grouped_factor_rolling_window(df, 
+                                   applied_variable = 'engagement_factor_moving_avg', 
+                                   applied_function = 'std', 
+                                   new_col = 'engagement_factor_std', 
+                                   window = 100,
+                                   normalize = False)
+
+    df = grouped_factor_rolling_window(df, 
+                                   applied_variable = 'contrast', 
+                                   applied_function = 'mean', 
+                                   new_col = 'rel_contrast_moving_avg', 
+                                   window = 100,
+                                   normalize = True)
+
+    df = grouped_factor_rolling_window(df, 
+                                   applied_variable = 'brightness', 
+                                   applied_function = 'mean', 
+                                   new_col = 'rel_brightness_moving_avg', 
+                                   window = 100,
+                                   normalize = True)
+
+
+
     
     for name in df.columns:
         if name.startswith('Unnamed'): df.drop(name, axis = 1, inplace = True)

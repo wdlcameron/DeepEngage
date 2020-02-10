@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DeepEngage | InsightDemo</title>
+        <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+      </head>
+
+
+
+
+</head>
+
+<body style="background-color:#1abc9c;">
+    <div class="large-12 cell text-center">
+        <h2>DeepEngage</h2>
+      </div>
+      <hr>
+
+    <div class = "row">
+      <div class="large-6 columns text-center">
+
+        <h3>Choose a preset group</h3>
+        <hr>
+        <form action="/preset" method="GET" id="demo_input">
+          <select id = 'demo_input', name = 'demo_input'>
+              <option value="Demo_1">Demo Group 1</option>
+              <option value="Demo_2">Demo Group 2</option>
+              <option value="Demo_3">Demo Group 3</option>
+              <option value="Demo_4">Demo Group 4</option>
+            </select>
+        </form>
+
+          <div>
+              <button class="expanded button" form="demo_input" >Such Expand</button>
+           </div>
+
+
+      </div>
+      <div class="large-6 columns text-center">
+
+          <h3>Enter your filename below</h3>
+          <hr>
+          <form id="uploadbanner" enctype="multipart/form-data" method="post" action="#">
+            <input id="fileupload" name="myfile" type="file" />
+            <input type="submit" value="submit" id="submit" />
+         </form>
+
+        
+        </div>
+
+
+
+    </div>  
+
+    {% if my_form_result=='NotEmpty' %}
+    <div class="row">
+        <div class="large-6 columns text-center">
+          <h4>Recommended Image</h4>
+          <img src="{{url_for('static', filename = 'temp/' + my_img_name) }}?random=323527528432525.24234" width=100%>
+          <!-- <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in.</p> -->
+        </div>
+        <div class="large-6 columns text-center">
+          <h4>Recommended Optimizations</h4>
+          <img src="{{url_for('static', filename = 'temp/' + optimized_image_name) }}?random=323527528432525.24234" width=100%>
+          <!-- <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in.</p> -->
+        </div>
+    </div>
+
+    {% endif %}
+
+
+    <p><a data-open="exampleModal1">Click me for a modal</a></p>
+
+    <div class="reveal" id="exampleModal1" data-reveal>
+      <h1>Awesome. I Have It.</h1>
+      <p class="lead">Your couch. It is mine.</p>
+      <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+      <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+
+</body>
+
+
+
+
+
+
+</html>

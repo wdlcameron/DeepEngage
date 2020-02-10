@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+
+  <title>DeepEngage | InsightDemo</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../static/css/freelancer.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">DeepEngage</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#try">Demo</a>
+              </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+
+  <!-- Masthead -->
+  <!-- <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+      Masthead Avatar Image
+      <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt="">
+
+      Masthead Heading
+      <h1 class="masthead-heading text-uppercase mb-0">DeepEngage</h1>
+
+      Icon Divider
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      Masthead Subheading
+      <p class="masthead-subheading font-weight-light mb-0">An instagram engagement optimizer</p>
+
+    </div>
+  </header> -->
+
+
+
+
+
+
+  
+   <!-- Try Section -->
+   
+   <!-- <div id="drop-area">
+    <form class="my-form">
+      <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+      <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+      <label class="button" for="fileElem">Select some files</label>
+    </form>
+  </div> -->
+
+
+  <style>
+      * {
+        box-sizing: border-box;
+      }
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+  </style>
+  </head>
+  <body>
+  
+
+      <div class="text-center", style="background-color:#1abc9c;">  
+        <h1 class=" text-center text-white text-uppercase">DeepEngage</h1>
+
+
+
+      </div>
+
+  <div class="row ">
+    <div class="column" style="background-color:#1abc9c;">
+        <h2 class="text-center text-white">Choose a preset group</h2>
+        <hr class="star-light mb-5">
+              <div class="col-sm m-3 text-center">
+                  <form action="/preset" method="GET" id="demo_input">
+                <select id = 'demo_input', name = 'demo_input'>
+                      <option value="Demo_1">Demo Group 1</option>
+                      <option value="Demo_2">Demo Group 2</option>
+                      <option value="Demo_3">Demo Group 3</option>
+                      <option value="Demo_4">Demo Group 4</option>
+                    </select>
+                  </form>  
+              </div>
+              <div class="row justify-content-center">
+                  <button type="submit" class="btn btn-secondary btn-lg" form="demo_input">Analyze Demo Group</button>
+               </div>
+    </div>
+    <div class="column" style="background-color:#1abc9c;">
+        <h2 class="text-center text-white">Enter your filename below</h2>
+        <hr class="star-light mb-5">
+              <div class="col-sm m-3 text-center">
+                    <form action="/output" method="GET" id="user_input">
+                          <input class="form-control" type="text" id="user_input" name='user_input' placeholder="Enter your URL here" value  = "C:\Users\William\OneDrive\Code\Output\_dCXXIwCJ1.jpg"> 
+                    </form>
+              </div>
+              <div class="row justify-content-center">
+                  <button type="submit" class="btn btn-secondary btn-lg" form="user_input">Analyze New File</button>
+               </div>
+    </div>
+  </div>
+
+	<section class="bg-primary mb-0" id="try">
+  	<div class="container">
+    	<!-- <h2 class="text-center text-white">Enter your filename below</h2>
+    	<hr class="star-light mb-5">
+          	<div class="col-sm m-3 text-center">
+                	<form action="/output" method="GET" id="user_input">
+                      	<input class="form-control" type="text" id="user_input" name='user_input' placeholder="e.g. blablabla" value  = "C:\Users\William\OneDrive\Code\Output\_dCXXIwCJ1.jpg"> 
+                	</form>
+          	</div> -->
+   	<div class="row justify-content-center">
+         	<!-- <button type="submit" class="btn btn-secondary btn-lg" form="user_input">Go!</button> -->
+        </div>
+        
+        {% if my_form_result=='Empty' %}
+        <div class="row mt-4 justify-content-center">
+              <h4 class="text-danger text-center text-uppercase">You did not type anything!</h4>
+        </div>
+    
+        {% elif my_form_result=='NotEmpty' %}	 
+    
+        <!-- <div class="row mt-4 justify-content-center">
+              <h4 class="text-light text-center text-uppercase">{{output_message}}</h4>
+        </div> -->
+        <div class="row p-1 m-1 justify-content-center">
+
+              <div class="column col-md- w-50 list-group">
+              <h2 class="text-center text-white">Enter your filename below</h2>
+              <h4 class="text-light text-center text-uppercase">Testing123</h4>
+              <!-- <h4 class="text-light text-center text-uppercase">{{output_message}}</h4>   -->
+              <!-- <img src="{{ url_for('static', filename = my_img_name) }}" width=500 height=416> -->
+              <img src="{{url_for('static', filename = 'temp/' + my_img_name) }}" width=100%>
+              </div> 
+	 
+              <!-- <div class="col-md- w-50 list-group"> -->
+                  
+                {% if optimize_pane=='Unoptimized' %}
+                  <div class="row justify-content-center">
+                      <form action="/optimize" method="GET" id="optim_input">
+                        <!-- <input class="form-control" type="text" id="optim_input" name='optim_input' placeholder="Enter your URL here" value  = "C:\Users\William\OneDrive\Code\Output\_dCXXIwCJ1.jpg">  -->
+                      </form>
+
+
+                      <button type="submit" class="btn btn-secondary btn-lg" form="optim_input">Optimize Post</button>
+                   </div>
+
+                {% elif optimize_pane == 'Optimized' %}
+                <div class="column justify-content-center">
+                    <h2 class="text-center text-white">Enter your filename below</h2>
+                    <img src="{{url_for('static', filename = 'temp/' + optimized_image_name) }}" width=100%>
+                </div>
+                <!-- <div class="row justify-content-center badge badge-primary badge-pill">You should post this on a: {{post_date}}</div>
+                <div class="row justify-content-center badge badge-primary badge-pill">The recommended filter is: {{filter_name}}</div> -->
+
+                
+                {% endif %}
+
+                  <!-- <ul class="list-group">
+                  <h4 class="text-center">
+                  <li class="list-group-item d-flex justify-content-between align-items-center active">
+                            <b>{{my_input}}</b>
+                            
+                           <span class="badge badge-primary badge-pill">Engagement: {{my_number}}</span>
+                         </li>
+                       </h4>
+                 </ul> -->
+           <!-- </div> -->
+        </div>
+    
+        {% else %}
+        <div class="row p-1 m-1 justify-content-center">
+
+            <div class="col">
+
+            <h4 class="text-light text-center text-uppercase">{{output_message}}</h4>  
+            <!-- <img src="{{ url_for('static', filename = my_img_name) }}" width=500 height=416> -->
+            </div> 	 
+            <div class="col-md- w-50 list-group">
+                
+              {% if optimize_pane=='Unoptimized' %}
+                <div class="row justify-content-center">
+
+                 </div>
+
+              {% elif optimize_pane == 'Optimized' %}
+              <div class="row justify-content-center">
+              </div>
+
+              
+              {% endif %}
+
+
+         </div>
+      </div>
+        {% endif %} 	 
+        </div>
+        <div class = 'container'></div>
+      </section>
+    
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../static/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="../static/js/jqBootstrapValidation.js"></script>
+  <script src="../static/js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../static/js/freelancer.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../static/js/drag_and_drop.js"></script>
+
+</body>
+
+</html>
